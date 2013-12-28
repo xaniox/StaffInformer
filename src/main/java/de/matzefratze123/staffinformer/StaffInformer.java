@@ -86,10 +86,10 @@ public class StaffInformer extends JavaPlugin implements Listener {
 		BoardLayout layout;
 		
 		try {
-			layout = BoardLayout.loadFromXml(new FileInputStream(layoutFile), "default");
+			layout = BoardLayout.loadFromXml(new FileInputStream(layoutFile), config.getString("layout"));
 		} catch (FileNotFoundException e) {
 			//Failed to find file. Load default layout
-			layout = BoardLayout.loadFromXml(getClass().getResourceAsStream("/layout.xml"), config.getString("layout"));
+			layout = BoardLayout.loadFromXml(getClass().getResourceAsStream("/layout.xml"), "default");
 		}
 		
 		scoreboard = new StaffScoreboard(layout);
