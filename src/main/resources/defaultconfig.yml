@@ -1,0 +1,7 @@
+###################################
+#  StaffInformer - Configuration  #
+###################################
+
+# Which layout should we use for the scoreboard? 
+# The layout has to be defined in layout.xml
+layout: default

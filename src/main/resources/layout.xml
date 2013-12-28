@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+
+<!-- 
+This file determines the 
+layout of the staff scoreboard.
+
+The following variables can be used:
+
+%active% - Fills in all active players
+%active-count% - Fills in the count of all active players
+%busy% - Fills in all busy players
+%busy-count% - Fills in the count of all busy players
+%empty% - Fills in an empty line
+
+Please note that lines will be rolled when they are longer than 16 characters.
+Use &amp; for a '&'.
+
+--> 
+
+<scoreboard-layout id="default">
+  <title>&amp;6&amp;l   Online Staff    </title>
+  <line>%empty%</line>
+  <line>&amp;a&amp;lActive:</line>
+  <line>%active%</line>
+  <line>%empty%</line>
+  <line>&amp;7&amp;lBusy:</line>
+  <line>%busy%</line>
+  <line>%empty%</line>
+  <line>&amp;8--------------</line>
+</scoreboard-layout>

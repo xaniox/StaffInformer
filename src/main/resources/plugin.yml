@@ -1,0 +1,9 @@
+name: StaffInformer
+version: ${project.version}
+
+author: matzefratze123
+main: ${main.class}
+
+commands:
+  staff:
+    description: General plugin command

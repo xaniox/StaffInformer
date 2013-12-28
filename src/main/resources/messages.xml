@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<messages>
+	<message id="noPermission">&amp;cYou don't have permission to use this command!</message>
+	<message id="onlyIngame">This command can only be used ingame!</message>
+	<message id="unknownCommand">&amp;cUnknown command! /staff &lt;version|busy|scoreboard&gt;</message>
+	
+	<entry name="scoreboard">
+		<entry name="messages">
+			<message id="nowBusy">&amp;7You are now busy.</message>
+			<message id="noLongerBusy">&amp;7You are no longer busy.</message>
+			<message id="sbAlreadyEnabled">&amp;cYour scoreboard is already enabled!</message>
+			<message id="toggled">&amp;7Your scoreboard has been %a.</message>
+		</entry>
+		<entry name="scoreboard">
+			<message id="title">&amp;6&amp;lOnline Staff</message>
+			<message id="noStaff">No staff online! Use /modreq for help.</message>
+		</entry>
+	</entry>
+</messages>
