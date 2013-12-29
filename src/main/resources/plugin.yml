@@ -2,6 +2,8 @@ name: StaffInformer
 version: ${project.version}
 
 author: matzefratze123
+
+softdepend: [VanishNoPacket]
 main: ${main.class}
 
 commands:
