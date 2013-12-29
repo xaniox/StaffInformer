@@ -104,9 +104,11 @@ public class StaffScoreboard implements Listener {
 	
 	@EventHandler(priority = EventPriority.MONITOR)
 	public void onPlayerJoin(final PlayerJoinEvent e) {
-		refresh();
-		
 		final Player player = e.getPlayer();
+		
+		if (player.hasPermission(Permissions.STAFF.get())) {
+			refresh();
+		}
 		
 		if (!player.hasPermission(Permissions.SHOW_SCOREBOARD.get())) {
 			return;
