@@ -2,6 +2,12 @@
 #  StaffInformer - Configuration  #
 ###################################
 
+# Layout
 # Which layout should we use for the scoreboard? 
 # The layout has to be defined in layout.xml
 layout: default
+
+# Auto-AFK
+# After this timeout in seconds, the user will be set as afk.
+# Set to -1 to disable this function.
+auto-afk: 300

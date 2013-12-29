@@ -51,7 +51,7 @@ public class StaffScoreboard implements Listener {
 		this.busy = new ArrayList<String>();
 		this.scoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
 		this.objective = new WrappedInformationObjective(scoreboard, OBJECTIVE_NAME);
-		this.objective.setDisplayName(I18N.getMessage("scoreboard.scoreboard.title")); 
+		this.objective.setDisplayName(I18N.getMessage("scoreboard.scoreboard.title"));
 		
 		Bukkit.getPluginManager().registerEvents(this, StaffInformer.getInstance());
 	}

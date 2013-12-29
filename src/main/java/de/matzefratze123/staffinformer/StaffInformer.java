@@ -41,6 +41,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import de.matzefratze123.staffinformer.command.CommandHandler;
+import de.matzefratze123.staffinformer.util.AFKDetector;
 import de.matzefratze123.staffinformer.util.IOUtil;
 import de.matzefratze123.staffinformer.util.Logger;
 
@@ -53,6 +54,7 @@ public class StaffInformer extends JavaPlugin implements Listener {
 	private static FileConfiguration config;
 	
 	private StaffScoreboard scoreboard;
+	private AFKDetector afkDetector;
 	private Map<String, Settings> settingsMap = new HashMap<String, Settings>();
 	
 	@Override
@@ -93,6 +95,8 @@ public class StaffInformer extends JavaPlugin implements Listener {
 		}
 		
 		scoreboard = new StaffScoreboard(layout);
+		afkDetector = new AFKDetector(this, config.getInt("auto-afk"));
+		afkDetector.startDetector();
 		
 		CommandHandler.initCommands();
 		
@@ -127,6 +131,10 @@ public class StaffInformer extends JavaPlugin implements Listener {
 	
 	public StaffScoreboard getScoreboard() {
 		return scoreboard;
+	}
+	
+	public AFKDetector getAFKDetector() {
+		return afkDetector;
 	}
 	
 	public Settings getSettings(OfflinePlayer player) {
