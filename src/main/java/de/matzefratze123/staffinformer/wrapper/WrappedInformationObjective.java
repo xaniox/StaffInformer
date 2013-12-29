@@ -56,8 +56,8 @@ public class WrappedInformationObjective {
 		objective.setDisplaySlot(DisplaySlot.SIDEBAR);
 		
 		this.objective = objective;
-		this.lines = new ArrayList<>();
-		this.rollingTextTasks = new ArrayList<>();
+		this.lines = new ArrayList<String>();
+		this.rollingTextTasks = new ArrayList<RollingText>();
 		
 		for (int i = 0; i < MAX_LINES; i++) {
 			lines.add(null);
