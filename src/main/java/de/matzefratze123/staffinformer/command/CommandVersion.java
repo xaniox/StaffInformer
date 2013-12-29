@@ -37,7 +37,7 @@ public class CommandVersion extends HSCommand {
 	@Override
 	protected void getHelp(Help help) {
 		help.setUsage("/staff version");
-		help.addHelp("Shows plugin version and information");
+		help.setHelp("Shows plugin version and information");
 	}
 	
 }

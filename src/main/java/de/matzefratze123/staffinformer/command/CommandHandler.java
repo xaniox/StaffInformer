@@ -22,6 +22,7 @@ package de.matzefratze123.staffinformer.command;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Vector;
 
 import org.bukkit.ChatColor;
@@ -40,7 +41,7 @@ public class CommandHandler implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (args.length == 0) {
-			sender.sendMessage(ChatColor.GRAY + "/staff <version|busy|scoreboard>");
+			sendHelp(sender);
 			return true;
 		}
 		
@@ -51,11 +52,8 @@ public class CommandHandler implements CommandExecutor {
 		}
 		if (args.length > 1 && (args[1].equalsIgnoreCase("help") || args[1].equalsIgnoreCase("?"))) {
 			Help help = command.getHelp();
-			sender.sendMessage(help.getUsage());
-			
-			for (String line : help.getHelp()) {
-				sender.sendMessage(ChatColor.GRAY + line);
-			}
+			sender.sendMessage(ChatColor.YELLOW + "Usage: " + help.getRawUsage());
+			sender.sendMessage(ChatColor.YELLOW + help.getHelp());
 			
 			return true;
 		}
@@ -109,11 +107,24 @@ public class CommandHandler implements CommandExecutor {
 	public static void initCommands() {
 		//Add all commands
 		addSubCommand("busy", new CommandBusy());
+		addSubCommand("b", new CommandBusy());
 		addSubCommand("version", new CommandVersion());
 		addSubCommand("scoreboard", new CommandScoreboard());
 		addSubCommand("board", new CommandScoreboard());
 		addSubCommand("sb", new CommandScoreboard());
 		addSubCommand("reload", new CommandReload());
+		addSubCommand("help", new CommandHelp());
+	}
+	
+	static void sendHelp(CommandSender sender) {
+		sender.sendMessage(ChatColor.YELLOW + "Staff commands:");
+		
+		for (Entry<String, HSCommand> entry : commands.entrySet()) {
+			HSCommand cmd = entry.getValue();
+			
+			Help help = cmd.getHelp();
+			sender.sendMessage(ChatColor.YELLOW + help.getRawUsage() + " - " + help.getHelp());
+		}
 	}
 	
 	public static void setPluginInstance(StaffInformer instance) {

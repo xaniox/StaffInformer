@@ -19,19 +19,14 @@
  */
 package de.matzefratze123.staffinformer.command;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.bukkit.ChatColor;
 
 public class Help {
 
 	private String			usage;
-	private List<String>	help;
+	private String          help;
 
 	public Help(HSCommand command) {
-		this.help = new ArrayList<String>();
-
 		command.getHelp(this);
 	}
 
@@ -47,11 +42,11 @@ public class Help {
 		this.usage = usage;
 	}
 
-	public void addHelp(String line) {
-		help.add(line);
+	public void setHelp(String help) {
+		this.help = help;
 	}
 
-	public List<String> getHelp() {
+	public String getHelp() {
 		return help;
 	}
 

@@ -55,7 +55,7 @@ public class CommandReload extends HSCommand {
 	@Override
 	protected void getHelp(Help help) {
 		help.setUsage("/staff reload");
-		help.addHelp("Reloads the plugin");
+		help.setHelp("Reloads the plugin");
 	}
 
 }
