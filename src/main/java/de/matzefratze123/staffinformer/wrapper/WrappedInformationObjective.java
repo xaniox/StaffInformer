@@ -68,6 +68,10 @@ public class WrappedInformationObjective {
 		this(scoreboard.registerNewObjective(objectiveName, DUMMY_CRITERIA));
 	}
 	
+	public Objective getHandle() {
+		return objective;
+	}
+	
 	public void setDisplayName(String name) {
 		objective.setDisplayName(name);
 	}
