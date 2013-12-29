@@ -51,7 +51,7 @@ public class CommandBusy extends HSCommand {
 	@Override
 	protected void getHelp(Help help) {
 		help.setUsage("/staff busy");
-		help.setHelp("Sets your current state to busy, means that your name doesn't show up in the online staff list");
+		help.setHelp("Set your state to busy");
 	}
 
 }

@@ -12,7 +12,7 @@ public class CommandHelp extends HSCommand {
 	@Override
 	protected void getHelp(Help help) {
 		help.setUsage("/staff help");
-		help.setHelp("Shows the help");
+		help.setHelp("Display this help message");
 	}
 
 }

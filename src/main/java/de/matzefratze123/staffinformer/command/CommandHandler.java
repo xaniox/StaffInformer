@@ -130,7 +130,7 @@ public class CommandHandler implements CommandExecutor {
 	public static void setPluginInstance(StaffInformer instance) {
 		HSCommand.setPluginInstance(instance);
 	}
-
+	
 	public static void setConfigInstance(StaffInformer plugin) {
 		HSCommand.setFileConfiguration(plugin.getConfig());
 	}

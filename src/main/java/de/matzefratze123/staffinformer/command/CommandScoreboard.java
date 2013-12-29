@@ -65,7 +65,7 @@ public class CommandScoreboard extends HSCommand {
 	@Override
 	protected void getHelp(Help help) {
 		help.setUsage("/staff scoreboard <on|off>");
-		help.setHelp("Disables or your scoreboard for your current session");
+		help.setHelp("Toggle your scoreboard");
 	}
 
 }
