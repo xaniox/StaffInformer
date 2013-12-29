@@ -64,6 +64,14 @@ public class StaffScoreboard implements Listener {
 		return objective;
 	}
 	
+	public BoardLayout getLayout() {
+		return layout;
+	}
+	
+	public void setLayout(BoardLayout layout) {
+		this.layout = layout;
+	}
+	
 	public void refresh() {
 		refresh(null);
 	}

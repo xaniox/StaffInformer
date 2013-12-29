@@ -121,6 +121,10 @@ public class StaffInformer extends JavaPlugin implements Listener {
 		return config;
 	}
 	
+	public static void setSystemConfig(FileConfiguration config) {
+		StaffInformer.config = config;
+	}
+	
 	public StaffScoreboard getScoreboard() {
 		return scoreboard;
 	}

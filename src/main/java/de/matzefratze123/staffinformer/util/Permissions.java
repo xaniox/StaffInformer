@@ -24,7 +24,8 @@ public enum Permissions {
 	STAFF("staff"),
 	BUSY("busy"), 
 	SHOW_SCOREBOARD("show"),
-	CONTROL_OWN_SCOREBOARD("controlownscoreboard");
+	CONTROL_OWN_SCOREBOARD("controlownscoreboard"),
+	RELOAD("reload");
 	
 	private static final String BASE_PERMISSION = "staffinformer";
 	

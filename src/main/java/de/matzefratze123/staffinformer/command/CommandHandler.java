@@ -111,7 +111,9 @@ public class CommandHandler implements CommandExecutor {
 		addSubCommand("busy", new CommandBusy());
 		addSubCommand("version", new CommandVersion());
 		addSubCommand("scoreboard", new CommandScoreboard());
+		addSubCommand("board", new CommandScoreboard());
 		addSubCommand("sb", new CommandScoreboard());
+		addSubCommand("reload", new CommandReload());
 	}
 	
 	public static void setPluginInstance(StaffInformer instance) {

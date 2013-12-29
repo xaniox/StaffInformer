@@ -91,7 +91,8 @@ public class I18N {
 		return message;
 	}
 	
-	private static void loadMessages() {
+	public static void loadMessages() {
+		messages.clear();
 		InputStream inStream = null;
 		
 		try {
