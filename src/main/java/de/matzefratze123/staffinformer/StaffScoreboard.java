@@ -98,10 +98,12 @@ public class StaffScoreboard implements Listener {
 	public void onPlayerJoin(final PlayerJoinEvent e) {
 		refresh();
 		
-		if (!e.getPlayer().hasPermission(Permissions.SHOW_SCOREBOARD.get())) {
+		final Player player = e.getPlayer();
+		
+		if (!player.hasPermission(Permissions.SHOW_SCOREBOARD.get())) {
 			return;
 		}
-		if (!StaffInformer.getInstance().getSettings(e.getPlayer()).getShowScoreboard()) {
+		if (!StaffInformer.getInstance().getSettings(player).getShowScoreboard()) {
 			return;
 		}
 		
@@ -109,6 +111,10 @@ public class StaffScoreboard implements Listener {
 			
 			@Override
 			public void run() {
+				if (!player.isOnline()) {
+					return;
+				}
+				
 				objective.showTo(e.getPlayer());
 			}
 		}, 15L);
