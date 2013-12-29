@@ -138,10 +138,10 @@ public class BoardLayout {
 			}
 		}
 	}
-	
+
 	private static List<Player> getActive(StaffScoreboard board) {
 		List<Player> list = new ArrayList<Player>();
-		
+
 		for (Player player : Bukkit.getOnlinePlayers()) {
 			if (!player.hasPermission(Permissions.STAFF.get())) {
 				continue;
@@ -152,32 +152,32 @@ public class BoardLayout {
 			if (board.isBusy(player)) {
 				continue;
 			}
-			
+
 			list.add(player);
 		}
-		
+
 		return list;
 	}
-	
+
 	private static List<Player> getBusys(StaffScoreboard board) {
 		List<Player> list = new ArrayList<Player>();
-		
+
 		for (String busy : board.getBusys()) {
 			Player player = Bukkit.getPlayerExact(busy);
 			if (player == null) {
 				continue;
 			}
-			
+
 			if (VanishHandler.isVanished(player)) {
 				continue;
 			}
-			
+
 			list.add(player);
 		}
-		
+
 		return list;
 	}
-	
+
 	public static BoardLayout loadFromXml(InputStream xml, String id) {
 		String title = "Online Staff";
 		String[] lines = new String[0];
@@ -212,16 +212,12 @@ public class BoardLayout {
 					
 					if (node.getNodeName().equalsIgnoreCase(TITLE_ELEMENT)) {
 						title = node.getTextContent();
-						
-						System.out.println(title);
 					} else if (node.getNodeName().equalsIgnoreCase(LINE_ELEMENT)) {
 						String[] tmpLines = new String[lines.length + 1];
 						System.arraycopy(lines, 0, tmpLines, 0, lines.length);
 						tmpLines[lines.length] = node.getTextContent();
 						
 						lines = tmpLines;
-						
-						System.out.println(lines[lines.length - 1]);
 					}
 				}
 			}
