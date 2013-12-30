@@ -113,6 +113,7 @@ public class StaffScoreboard implements Listener {
 		if (!player.hasPermission(Permissions.SHOW_SCOREBOARD.get())) {
 			return;
 		}
+		
 		if (!StaffInformer.getInstance().getSettings(player).getShowScoreboard()) {
 			return;
 		}
