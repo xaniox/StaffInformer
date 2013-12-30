@@ -57,6 +57,8 @@ public class StaffInformer extends JavaPlugin implements Listener {
 	private AFKDetector afkDetector;
 	private Map<String, Settings> settingsMap = new HashMap<String, Settings>();
 	
+	private VanishHook vanishHook;
+	
 	@Override
 	public void onEnable() {
 		instance = this;
@@ -98,14 +100,13 @@ public class StaffInformer extends JavaPlugin implements Listener {
 		afkDetector = new AFKDetector(this, config.getInt("auto-afk"));
 		afkDetector.startDetector();
 		
+		vanishHook = new VanishHook();
+		
 		CommandHandler.initCommands();
 		
 		getCommand("staff").setExecutor(new CommandHandler());
 		
 		getServer().getPluginManager().registerEvents(this, this);
-		if (VanishHandler.getVanishPlugin() != null) {
-			getServer().getPluginManager().registerEvents(new VanishHandler(), this);
-		}
 		
 		Logger.info("StaffInformer v" + getDescription().getVersion() + " enabled!");
 	}
@@ -135,6 +136,10 @@ public class StaffInformer extends JavaPlugin implements Listener {
 	
 	public AFKDetector getAFKDetector() {
 		return afkDetector;
+	}
+	
+	public VanishHook getVanishHook() {
+		return vanishHook;
 	}
 	
 	public Settings getSettings(OfflinePlayer player) {

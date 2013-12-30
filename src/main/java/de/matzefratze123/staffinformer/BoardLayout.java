@@ -146,7 +146,7 @@ public class BoardLayout {
 			if (!player.hasPermission(Permissions.STAFF.get())) {
 				continue;
 			}
-			if (VanishHandler.isVanished(player)) {
+			if (StaffInformer.getInstance().getVanishHook().hasHook() && StaffInformer.getInstance().getVanishHook().isVanished(player)) {
 				continue;
 			}
 			if (board.isBusy(player)) {
@@ -168,7 +168,7 @@ public class BoardLayout {
 				continue;
 			}
 
-			if (VanishHandler.isVanished(player)) {
+			if (StaffInformer.getInstance().getVanishHook().hasHook() && StaffInformer.getInstance().getVanishHook().isVanished(player)) {
 				continue;
 			}
 

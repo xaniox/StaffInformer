@@ -27,7 +27,17 @@ import org.bukkit.plugin.Plugin;
 import org.kitteh.vanish.VanishPlugin;
 import org.kitteh.vanish.event.VanishStatusChangeEvent;
 
-public class VanishHandler implements Listener {
+public class VanishHook implements Listener {
+	
+	private static final String PLUGIN_NAME = "VanishNoPacket";
+	private VanishPlugin plugin;
+	
+	public VanishHook() {
+		if (hasHook()) {
+			hook();
+			Bukkit.getPluginManager().registerEvents(this, StaffInformer.getInstance());
+		}
+	}
 	
 	@EventHandler
 	public void onVanishStatusChange(VanishStatusChangeEvent e) {
@@ -41,28 +51,52 @@ public class VanishHandler implements Listener {
 		}
 	}
 	
-	public static VanishPlugin getVanishPlugin() {
-		Plugin plugin = Bukkit.getPluginManager().getPlugin("VanishNoPacket");
+	public void hook() {
+		Plugin plugin = Bukkit.getPluginManager().getPlugin(PLUGIN_NAME);
 		
 		if (plugin == null) {
-			return null;
+			return;
 		}
 		if (!plugin.isEnabled()) {
-			return null;
+			return;
 		}
 		if (!(plugin instanceof VanishPlugin)) {
-			return null;
+			return;
 		}
 		
-		return (VanishPlugin) plugin;
+		this.plugin = (VanishPlugin) plugin;
 	}
 	
-	public static boolean isVanished(Player player) {
-		if (getVanishPlugin() == null) {
+	public boolean hasHook() {
+		if (this.plugin != null) {
+			return true;
+		}
+		
+		Plugin plugin = Bukkit.getPluginManager().getPlugin(PLUGIN_NAME);
+		
+		if (plugin == null) {
+			return false;
+		}
+		if (!plugin.isEnabled()) {
+			return false;
+		}
+		if (!(plugin instanceof VanishPlugin)) {
 			return false;
 		}
 		
-		return getVanishPlugin().getManager().isVanished(player);
+		return true;
+	}
+	
+	public VanishPlugin getHook() {
+		return plugin;
+	}
+	
+	public boolean isVanished(Player player) {
+		if (plugin == null) {
+			throw new IllegalStateException("Hook is not initialized!");
+		}
+		
+		return plugin.getManager().isVanished(player);
 	}
 	
 }
