@@ -122,7 +122,7 @@ public class Settings {
 					NodeList settingsNodes = item.getChildNodes();
 					
 					for (int j = 0; j < settingsNodes.getLength(); j++) {
-						Node setting = settingsNodes.item(i);
+						Node setting = settingsNodes.item(j);
 						
 						if (setting.getNodeName().equalsIgnoreCase(SHOW_SCOREBOARD_ELEMENT)) {
 							settings.setShowScoreboard(Boolean.parseBoolean(setting.getTextContent()));
