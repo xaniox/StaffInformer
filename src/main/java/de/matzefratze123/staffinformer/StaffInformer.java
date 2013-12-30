@@ -138,7 +138,12 @@ public class StaffInformer extends JavaPlugin implements Listener {
 	}
 	
 	public Settings getSettings(OfflinePlayer player) {
-		return settingsMap.get(player.getName());
+		Settings settings =  settingsMap.get(player.getName());
+		if (settings == null) {
+			settings = Settings.load(player);
+		}
+		
+		return settings;
 	}
 	
 	@EventHandler
