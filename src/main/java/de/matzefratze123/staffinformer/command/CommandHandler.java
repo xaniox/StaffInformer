@@ -19,8 +19,10 @@
  */
 package de.matzefratze123.staffinformer.command;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Vector;
@@ -118,12 +120,18 @@ public class CommandHandler implements CommandExecutor {
 	
 	static void sendHelp(CommandSender sender) {
 		sender.sendMessage(ChatColor.YELLOW + "Staff commands:");
+		List<Class<?>> printedCommands = new ArrayList<Class<?>>();
 		
 		for (Entry<String, HSCommand> entry : commands.entrySet()) {
 			HSCommand cmd = entry.getValue();
 			
+			if (printedCommands.contains(cmd.getClass())) {
+				continue;
+			}
+			
 			Help help = cmd.getHelp();
 			sender.sendMessage(ChatColor.YELLOW + help.getRawUsage() + " - " + help.getHelp());
+			printedCommands.add(cmd.getClass());
 		}
 	}
 	
