@@ -152,6 +152,9 @@ public class BoardLayout {
 			if (board.isBusy(player)) {
 				continue;
 			}
+			if (StaffInformer.getInstance().getAFKDetector().isAfk(player)) {
+				continue;
+			}
 
 			list.add(player);
 		}
@@ -162,16 +165,17 @@ public class BoardLayout {
 	private static List<Player> getBusys(StaffScoreboard board) {
 		List<Player> list = new ArrayList<Player>();
 
-		for (String busy : board.getBusys()) {
-			Player player = Bukkit.getPlayerExact(busy);
-			if (player == null) {
+		for (Player player : Bukkit.getOnlinePlayers()) {
+			if (!player.hasPermission(Permissions.STAFF.get())) {
 				continue;
 			}
-
 			if (StaffInformer.getInstance().getVanishHook().hasHook() && StaffInformer.getInstance().getVanishHook().isVanished(player)) {
 				continue;
 			}
-
+			if (!board.isBusy(player) && !StaffInformer.getInstance().getAFKDetector().isAfk(player)) {
+				continue;
+			}
+			
 			list.add(player);
 		}
 

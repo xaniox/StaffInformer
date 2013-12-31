@@ -7,6 +7,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerEvent;
 import org.bukkit.event.player.PlayerKickEvent;
@@ -88,8 +89,12 @@ public class AFKDetector implements Runnable, Listener {
 			Location lastLocation = lastLocations.get(player.getName());
 			Location currentLocation = player.getLocation();
 			
+			int newValue = -1;
+			boolean call = false;
+			boolean isGoingAfk = false;
+			
 			if (compareLocations(currentLocation, lastLocation)) {
-				int newValue;
+				
 				
 				if (secondsAfk.containsKey(player.getName())) {
 					newValue = secondsAfk.get(player.getName()).intValue();
@@ -99,8 +104,28 @@ public class AFKDetector implements Runnable, Listener {
 				}
 				
 				secondsAfk.put(player.getName(), newValue);
+				
+				if (newValue == afkAfter) {
+					call = true;
+					isGoingAfk = true;
+				}
 			} else {
+				if (secondsAfk.containsKey(player.getName())) {
+					int oldValue = secondsAfk.get(player.getName());
+					
+					if (oldValue >= afkAfter) {
+						//Player is going to move
+						call = true;
+						isGoingAfk = false;
+					}
+				}
+				
 				secondsAfk.remove(player.getName());
+			}
+			
+			if (call) {
+				PlayerAfkEvent event = new PlayerAfkEvent(player, isGoingAfk);
+				Bukkit.getPluginManager().callEvent(event);
 			}
 			
 			lastLocations.put(player.getName(), player.getLocation());
@@ -134,6 +159,33 @@ public class AFKDetector implements Runnable, Listener {
 			return false;
 		
 		return true;
+	}
+	
+	public static class PlayerAfkEvent extends PlayerEvent {
+		
+		private static final HandlerList handlers = new HandlerList();
+		
+		private boolean isGoingAfk;
+		
+		public PlayerAfkEvent(Player player, boolean isGoingAfk) {
+			super(player);
+			
+			this.isGoingAfk = isGoingAfk;
+		}
+		
+		public boolean isGoingAfk() {
+			return isGoingAfk;
+		}
+
+		@Override
+		public HandlerList getHandlers() {
+			return handlers;
+		}
+		
+		public static HandlerList getHandlerList() {
+			return handlers;
+		}
+		
 	}
 	
 }

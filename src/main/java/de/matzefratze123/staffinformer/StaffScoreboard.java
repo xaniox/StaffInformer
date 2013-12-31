@@ -34,6 +34,7 @@ import org.bukkit.scoreboard.Scoreboard;
 
 import de.matzefratze123.staffinformer.util.I18N;
 import de.matzefratze123.staffinformer.util.Permissions;
+import de.matzefratze123.staffinformer.util.AFKDetector.PlayerAfkEvent;
 import de.matzefratze123.staffinformer.wrapper.WrappedInformationObjective;
 
 public class StaffScoreboard implements Listener {
@@ -103,7 +104,7 @@ public class StaffScoreboard implements Listener {
 	}
 	
 	@EventHandler(priority = EventPriority.MONITOR)
-	public void onPlayerJoin(final PlayerJoinEvent e) {
+	public void onPlayerJoin(PlayerJoinEvent e) {
 		final Player player = e.getPlayer();
 		
 		if (player.hasPermission(Permissions.STAFF.get())) {
@@ -126,7 +127,7 @@ public class StaffScoreboard implements Listener {
 					return;
 				}
 				
-				objective.showTo(e.getPlayer());
+				objective.showTo(player);
 			}
 		}, 15L);
 	}
@@ -139,6 +140,13 @@ public class StaffScoreboard implements Listener {
 	@EventHandler
 	public void onPlayerKick(PlayerKickEvent e) {
 		refresh(e.getPlayer());
+	}
+	
+	@EventHandler
+	public void onPlayerAfk(PlayerAfkEvent e) {
+		System.out.println("Afk called");
+		
+		refresh();
 	}
 	
 }
