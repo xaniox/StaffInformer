@@ -98,7 +98,7 @@ public class StaffInformer extends JavaPlugin implements Listener {
 		
 		scoreboard = new StaffScoreboard(layout);
 		
-		int autoAfk = config.getInt("auto-afk");
+		int autoAfk = config.getInt("auto-afk", 600);
 		if (autoAfk >= 0) {
 			afkDetector = new AFKDetector(this, autoAfk);
 			afkDetector.startDetector();

@@ -9,4 +9,4 @@ layout: default
 
 # After this timeout in seconds, the user will be set as afk.
 # Set to -1 to disable this function.
-auto-afk: 300
+auto-afk: 600
